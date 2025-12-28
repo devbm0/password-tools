@@ -1,8 +1,6 @@
 # Password Tools
 *Simple Tools to Secure the Average Person.*
 
-Password tools was written to educate the average person about passwords. From creation of secure passwords to analysis of current ones, plus education about strong password habits, this tool can help you to take a step in the direction of securing your life from the vast world of online threats. 
-
 ## Installation
 
 To use this app, simply run the correct file for your operating system. For Windows, run the `.exe` file. For Linux (all distributions), run the `.appimage` file.
@@ -11,14 +9,14 @@ Installation of python and/or its modules is not required (unlesss you want to d
 
 ## Overview
 
-This app is the perfect way to secure your accounts and your life! This app contains tools to:
+With all the threats out there, is it now more important than ever to have strong passwords and good habits! This app contains tools to:
 
-- Generate strong passwords with a variety of options to fit your secutiry needs. 
+- Generate strong passwords with a variety of options to fit your security needs. 
 - Analyze the strength and security of current passwords and provide ideas for improvement. 
 - Provide education about password Dos and Don'ts to keep you safe and secure online. 
 - And more coming soon!
 
-Simply run the app and see how this app can change your life for the better!
+Simply open the app and see how this app can change your life for the better!
 
 ### Password Creation
 
