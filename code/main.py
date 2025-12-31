@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
 import os
-import home, creation
+import home, creation, analysis, learn, settings
 
 ctk.set_default_color_theme('blue')
 ctk.set_appearance_mode('system')
@@ -40,6 +40,8 @@ frames = {}
 
 frames['home'] = home.home_main(container)
 frames['creation'] = creation.creation_main(container)
+frames['analysis'] = analysis.analysis_main(container)
+frames['learn'] = learn.learn_main(container)
 for frame in frames.values():
     frame.place(relx=0.5, rely=0.5, anchor='center')
 
@@ -66,12 +68,12 @@ home_btn = ctk.CTkButton(nav, text='Home', command=lambda: show_frame('home'), f
 home_btn.place(x=2, y=0)
 creation_btn = ctk.CTkButton(nav, text='Creation', command=lambda: show_frame('creation'), fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 creation_btn.place(x=71, y=0)
-analysis_btn = ctk.CTkButton(nav, text='Analysis', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
+analysis_btn = ctk.CTkButton(nav, text='Analysis', command=lambda: show_frame('analysis'), fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 analysis_btn.place(x=140, y=0)
+learn_btn = ctk.CTkButton(nav, text='Learn', command=lambda: show_frame('learn'), fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
+learn_btn.place(x=209, y=0)
 settings_btn = ctk.CTkButton(nav, text='Settings', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
-settings_btn.place(x=209, y=0)
-learn_btn = ctk.CTkButton(nav, text='Learn', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
-learn_btn.place(x=278, y=0)
+settings_btn.place(x=278, y=0)
 quit_btn = ctk.CTkButton(nav, text='Quit', command=quit_program, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 quit_btn.place(x=347, y=0)
 
