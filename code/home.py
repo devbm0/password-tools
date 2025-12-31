@@ -19,7 +19,7 @@ def home_main(root):
     Version 1.0.0'''
     sub_text.insert('0.0', paragraph_text, 'center')
     sub_text.tag_config('center', justify="center")
-    sub_text.configure(state='disabled')\
+    sub_text.configure(state='disabled')
     
     image_path = os.path.abspath('password-tools.png')
     image = Image.open(image_path)
