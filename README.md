@@ -5,8 +5,6 @@
 
 To use this app, simply run the correct file for your operating system. For Windows, run the `.exe` file. For Linux (all distributions), run the `.appimage` file.
 
-Installation of python and/or any required modules (listed below) is not required (unlesss you want to directly run the main.py file).
-
 ## Overview
 
 With all the threats out there, is it now more important than ever to have strong passwords and good habits! This app contains tools to:
@@ -39,7 +37,8 @@ You might have qualms about putting your secure information into a random develo
 I'm an independent developer and I'm still learning, and I like to work on my own projects mostly without help. Please don't take it personally if I don't accept your pull request. =)
 
 ## Notes
-*If you really want to run main.py and not the `.exe` or `.appimage` file, simply clone the repository, ensure you have these modules installed (listed below), and run main.py. Just using the exe or appimage is recommended however.*
+*If you really want to run main.py and not the `.exe` or `.appimage` file, simply clone the repository, ensure you have these modules installed (listed below), and run main.py. Just using the exe or appimage is recommended, however.*
 
 - Customtkinter
 - Pillow
+- Pyperclip
