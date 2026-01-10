@@ -1,6 +1,8 @@
 import customtkinter as ctk
 import string
 import secrets
+import pyperclip as pypc
+import time
 
 char_groups = {
     'letters':{
@@ -24,14 +26,26 @@ char_groups = {
 
 def f_sumbit():
         global password
+        status_label.configure(text='', text_color='red')
+        if not length_selection:
+            status_label.configure(text='Error: Please select a length for your password')
+            return
+        if not characters:
+            status_label.configure(text='Error: Please select at least one character type option. ')
         password = generate(length, selected_groups)
         pass_label_II.configure(text=f'{password}', font=('Consolas', 36))
+
+        def copy():
+            pypc.copy(password)
+            status_label.configure(text='Password copied!', text_color='green')
+        copy_button = ctk.CTkButton(pass_frame, text='Copy', command=copy, font=('Open Sans', 16), width=30)
+        copy_button.grid(row=0, column=1, padx=10)
 
 def creation_main(container):
     for child in container.winfo_children():
         child.destroy()
     
-    global length_selection, characters, pass_label_II
+    global length_selection, characters, pass_label_II, status_label, pass_frame
     length_selection = ''
     characters = []
 
@@ -55,6 +69,7 @@ def creation_main(container):
     len_lbl.grid(row=0, column=0, padx=10, pady=10)
     def length_event():
         global length, length_selection
+        status_label.configure(text='')
         if radiovar.get() ==  1:
             length = 4
             length_selection = '4'
@@ -124,6 +139,7 @@ def creation_main(container):
             selected_groups.append('punctuation')
         if not selected_groups:
             return
+        status_label.configure(text='')
         characters = [char_groups[g]['label'] for g in selected_groups]
 
     checkbox1_var = ctk.IntVar(value=0)
@@ -138,13 +154,21 @@ def creation_main(container):
     sec_label = ctk.CTkLabel(char_frame, text='Choose all these for the most secure option', font=('Open Sans', 16, 'italic'))
     sec_label.grid(row=0, column=4, padx=10, pady=10)
 
-    submit = ctk.CTkButton(frame, text='Submit', command=f_sumbit)
+    submit = ctk.CTkButton(frame, text='Submit', command=f_sumbit, font=('Open Sans', 24))
     submit.place(relx=0.5, y=215, anchor='center')
 
     pass_label = ctk.CTkLabel(frame, text='Your new password:', font=('Open sans', 20))
     pass_label.place(relx=0.5, y = 275, anchor='center')
-    pass_label_II = ctk.CTkLabel(frame, text='...Press submit after picking some options...', font=('Consolas', 16))
-    pass_label_II.place(relx=0.5, y=315, anchor='center')    
+
+    pass_frame = ctk.CTkFrame(frame, width=900, height=50)
+    pass_frame.place(relx=0.5, y=315, anchor='center')
+    
+    pass_label_II = ctk.CTkLabel(pass_frame, text='...Press submit after picking some options...', font=('Consolas', 16))
+    pass_label_II.grid(row=0, column=0)
+    
+
+    status_label = ctk.CTkLabel(frame, text='', font=('Open Sans', 14), text_color='red')
+    status_label.place(relx=0.5, y=370, anchor='center')
 
 def generate(length, selected_groups):
     rng = secrets.SystemRandom()
