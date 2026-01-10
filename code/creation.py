@@ -2,7 +2,6 @@ import customtkinter as ctk
 import string
 import secrets
 import pyperclip as pypc
-import time
 
 char_groups = {
     'letters':{
