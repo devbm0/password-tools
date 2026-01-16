@@ -20,12 +20,12 @@ def quit_program():
     quit_root.lift()
     quit_root.focus_force()
     y = ctk.CTkButton(quit_root, text='Yes', command=root.destroy, width=20, fg_color='blue')
-    y.grid(row=0, column=0, padx=5, pady=5)
+    y.grid(row=0, column=0, padx=10, pady=5)
     n = ctk.CTkButton(quit_root, text='No', command=quit_root.destroy, width=20, fg_color='blue')
-    n.grid(row=0, column=2, padx=5, pady=5)
+    n.grid(row=0, column=2, padx=10, pady=5)
     confirm = ctk.CTkLabel(quit_root, text='''Are you sure you want to quit?
-All password data will be deleted.''', font=('Open Sans', 16))
-    confirm.grid(row=0, column=1, padx=10, pady=10)
+All unsaved data will be deleted.''', font=('Open Sans', 16))
+    confirm.grid(row=0, column=1, padx=15, pady=15)
 
 root = ctk.CTk()
 root.geometry("900x700")
