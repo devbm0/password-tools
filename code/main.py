@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from PIL import Image, ImageTk
-import os
+import os, platform
 import home, creation, analysis, learn, settings
 
 ctk.set_default_color_theme('blue')
@@ -9,7 +9,14 @@ ctk.set_appearance_mode('system')
 def test():
     print("Hello, world!")
 
-def quit_program():
+def quit_if():
+    os_name = platform.system()
+    if os_name == 'Windows':
+        quit_win()
+    if os_name == 'Linux':
+        quit_linux()
+
+def quit_win():
     if hasattr(root, 'quit_root') and root.quit_root.winfo_exists():
         root.quit_root.lift()
         root.quit_root.focus_force()
@@ -19,6 +26,17 @@ def quit_program():
     quit_root.grab_set()
     quit_root.lift()
     quit_root.focus_force()
+    y = ctk.CTkButton(quit_root, text='Yes', command=root.destroy, width=20, fg_color='blue')
+    y.grid(row=0, column=0, padx=10, pady=5)
+    n = ctk.CTkButton(quit_root, text='No', command=quit_root.destroy, width=20, fg_color='blue')
+    n.grid(row=0, column=2, padx=10, pady=5)
+    confirm = ctk.CTkLabel(quit_root, text='''Are you sure you want to quit?
+All unsaved data will be deleted.''', font=('Open Sans', 16))
+    confirm.grid(row=0, column=1, padx=15, pady=15)
+
+def quit_linux():
+    quit_root = ctk.CTkToplevel(root)
+    quit_root.title("Are you sure you want to quit?")
     y = ctk.CTkButton(quit_root, text='Yes', command=root.destroy, width=20, fg_color='blue')
     y.grid(row=0, column=0, padx=10, pady=5)
     n = ctk.CTkButton(quit_root, text='No', command=quit_root.destroy, width=20, fg_color='blue')
@@ -63,7 +81,7 @@ learn_btn = ctk.CTkButton(nav, text='Learn', command=test, fg_color='dark blue',
 learn_btn.place(x=209, y=0)
 settings_btn = ctk.CTkButton(nav, text='Settings', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 settings_btn.place(x=278, y=0)
-quit_btn = ctk.CTkButton(nav, text='Quit', command=quit_program, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
+quit_btn = ctk.CTkButton(nav, text='Quit', command=quit_if, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 quit_btn.place(x=347, y=0)
 
 home.home_main(container)
