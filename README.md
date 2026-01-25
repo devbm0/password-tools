@@ -18,11 +18,11 @@ Simply open the app and see how this app can change your life for the better!
 
 ### Password Creation
 
-This tool uses python's Random module to generate completely random strings of numbers, letters, and characters, all in an easily usable GUI. 
+This tool uses python's Secrets module to generate completely random yet secure strings of numbers, letters, and characters, all in an easily usable GUI. 
 
 ### Password Analysis
 
-This tool uses the formula for entropy (or randomness; E = log2(R**L)) to determine the security of your submitted password. It also accounts for usage of repeated characters, dictionary words, substitutions (a --> @, etc), and digits to show a more accurate determination of randomness/security. 
+This tool uses the formula for entropy (or randomness; E = log2(R**L)) to determine how difficult your password is to crack. It accounts for usage of repeated characters, dictionary words, substitutions (a --> @, etc), and digits to show a more accurate determination of randomness/security. 
 
 ### Fully Customizable! 
 
