@@ -75,7 +75,7 @@ home_btn = ctk.CTkButton(nav, text='Home', command=lambda: home.home_main(contai
 home_btn.place(x=2, y=0)
 creation_btn = ctk.CTkButton(nav, text='Creation', command=lambda: creation.creation_main(container), fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 creation_btn.place(x=71, y=0)
-analysis_btn = ctk.CTkButton(nav, text='Analysis', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
+analysis_btn = ctk.CTkButton(nav, text='Analysis', command=lambda: analysis.analysis_main(container), fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 analysis_btn.place(x=140, y=0)
 learn_btn = ctk.CTkButton(nav, text='Learn', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, border_color='white', border_width=1, font=font_small)
 learn_btn.place(x=209, y=0)
