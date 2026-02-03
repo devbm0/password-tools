@@ -70,8 +70,8 @@ def creation_main(container):
     font_big = ctk.CTkFont('Open Sans', 20, 'bold')
     font_xbig = ctk.CTkFont('Open Sans', 24, 'bold')
 
-    frame = ctk.CTkFrame(container, fg_color='transparent')
-    frame.place(x=0, y=0, relwidth=1, relheight=1)
+    frame = ctk.CTkFrame(container, fg_color='transparent', width=900, height=650)
+    frame.place(x=0, y=0)
     frame.lift()
 
     main_label = ctk.CTkLabel(frame, text='Creation', font=('Open Sans', 36, 'bold'))
