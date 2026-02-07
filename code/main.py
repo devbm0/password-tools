@@ -12,16 +12,17 @@ def test():
 def quit_if():
     os_name = platform.system()
     if os_name == 'Windows':
-        quit_win()
+        quit_win(icon)
     if os_name == 'Linux':
-        quit_linux()
+        quit_linux(icon)
 
-def quit_win():
+def quit_win(icon):
     if hasattr(root, 'quit_root') and root.quit_root.winfo_exists():
         root.quit_root.lift()
         root.quit_root.focus_force()
         return
     quit_root = ctk.CTkToplevel(root)
+    quit_root.wm_iconphoto(False, icon)
     quit_root.title("Are you sure you want to quit?")
     quit_root.grab_set()
     quit_root.lift()
@@ -34,9 +35,10 @@ def quit_win():
 All unsaved data will be deleted.''', font=('Open Sans', 16))
     confirm.grid(row=0, column=1, padx=15, pady=15)
 
-def quit_linux():
+def quit_linux(icon):
     quit_root = ctk.CTkToplevel(root)
     quit_root.title("Are you sure you want to quit?")
+    quit_root.wm_iconphoto(False, icon)
     y = ctk.CTkButton(quit_root, text='Yes', command=root.destroy, width=20, fg_color='blue')
     y.grid(row=0, column=0, padx=10, pady=5)
     n = ctk.CTkButton(quit_root, text='No', command=quit_root.destroy, width=20, fg_color='blue')
