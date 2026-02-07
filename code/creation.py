@@ -77,7 +77,7 @@ def creation_main(container):
     main_label = ctk.CTkLabel(frame, text='Creation', font=('Open Sans', 36, 'bold'))
     main_label.place(relx=0.5, y=40, anchor='center')
 
-    word_lbl = ctk.CTkLabel(frame, text='Random Letters', font=('Open Sans', 24, 'bold'))
+    word_lbl = ctk.CTkLabel(frame, text='Random Characters', font=('Open Sans', 24, 'bold'))
     word_lbl.place(relx=0.5, y=90, anchor='center')
 
     length_frame = ctk.CTkFrame(frame, width=835, height=50)
