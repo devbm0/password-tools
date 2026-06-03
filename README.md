@@ -3,11 +3,7 @@
 
 ## Installation
 
-<<<<<<< HEAD
 To use this app, simply download the included `.exe` file. Unfortunately, support for Linux is not included currently but is coming soon!
-=======
-To suit a variety of users, `.exe` and `.appimage` files are included in each release. To use this app, simply run the correct file for your operating system. For Windows, run the `.exe` file. For Linux (most distributions), run the `.appimage` file.
->>>>>>> 02c7ca64ccdb1856e4729c7b43159d433c4ba574
 
 ## Overview
 
@@ -26,13 +22,10 @@ This tool uses python's Secrets module to generate completely random yet secure 
 
 This tool uses the formula for entropy (or randomness; E = log2(R**L)) to determine how difficult your password is to crack. It accounts for usage of repeated characters, dictionary words, substitutions (a --> @, etc), and digits to show a more accurate determination of randomness/security.  
 
-<<<<<<< HEAD
 ### And More Coming Soon!
 
 This project is still in pre-release, so not all features are included. Check back later for more!
 
-=======
->>>>>>> 02c7ca64ccdb1856e4729c7b43159d433c4ba574
 ### Security
 
 You might have qualms about putting your secure information into a random developer's program. But don't worry; all sensitive information is only stored in your computer's memory, meaning this data will be forgotten as soon as you close the program unless you choose to save it. 
@@ -44,11 +37,7 @@ Please note that when creating a password, while you can select random whole wor
 Generally I don't accept pull requests, so don't take it personally if I don't accept yours. If you find a bug/have a suggestion please make a new Issue and I'll resolve it in the next release. 
 
 ## Notes
-<<<<<<< HEAD
 *If you really want to run main.py and not the `.exe` or `.appimage` file, simply clone the repository, ensure you have these modules installed (listed below), and run main.py. Just using the `.exe` or `.appimage` is recommended, however. It is recommended that you install the dependencies in a virtual environment to make sure there are no conflicts with other projects*
-=======
-*If you really want to run main.py and not the `.exe` or `.appimage` file, simply clone the repository, ensure you have these modules installed (listed below) in a virtual environment, and run main.py. Just using the exe or appimage is recommended for simplicity and to ensure the program doesn't break, however.*
->>>>>>> 02c7ca64ccdb1856e4729c7b43159d433c4ba574
 
 - Customtkinter
 - Pillow
