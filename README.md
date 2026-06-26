@@ -37,8 +37,10 @@ Please note that when creating a password, while you can select random whole wor
 Generally I don't accept pull requests, so don't take it personally if I don't accept yours. If you find a bug/have a suggestion please make a new Issue and I'll resolve it in the next release. 
 
 ## Notes
-*If you really want to run main.py and not the `.exe` or `.appimage` file, simply clone the repository, ensure you have these modules installed (listed below), and run main.py. Just using the `.exe` or `.appimage` is recommended, however. It is recommended that you install the dependencies in a virtual environment to make sure there are no conflicts with other projects*
+*If you really want to run main.py and not the `.exe` or `.appimage` file, simply clone the repository, ensure you have these dependencies installed (listed below), and run main.py. Just using the `.exe` or `.appimage` is recommended, however. It is recommended that you install the dependencies in a virtual environment to make sure there are no conflicts with other projects*
 
 - Customtkinter
 - Pillow
 - Pyperclip
+
+Please note that this app is in beta testing and may have some bugs; additionally, not all features are available at this time. Sorry for any inconvenience!
