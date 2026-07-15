@@ -29,7 +29,7 @@ def quit_win(icon):
     n = ctk.CTkButton(quit_root, text='No', command=quit_root.destroy, width=20, fg_color='blue')
     n.grid(row=0, column=2, padx=10, pady=5)
     confirm = ctk.CTkLabel(quit_root, text='''Are you sure you want to quit?
-All unsaved data will be deleted.''', font=('Open Sans', 16))
+All unsaved data will be destroyed.''', font=('Open Sans', 16))
     confirm.grid(row=0, column=1, padx=15, pady=15)
 
 def quit_linux(icon):
@@ -42,7 +42,7 @@ def quit_linux(icon):
     n = ctk.CTkButton(quit_root, text='No', command=quit_root.destroy, width=20, fg_color='blue')
     n.grid(row=0, column=2, padx=10, pady=5)
     confirm = ctk.CTkLabel(quit_root, text='''Are you sure you want to quit?
-All unsaved data will be deleted.''', font=('Open Sans', 16))
+All unsaved data will be destroyed.''', font=('Open Sans', 16))
     confirm.grid(row=0, column=1, padx=15, pady=15)
 
 def settings_main():
@@ -68,7 +68,6 @@ def settings_main():
     dark.grid(row=0, column=1, padx=5, pady=5)
     system = ctk.CTkRadioButton(theme_options_frame, text="System", font=("Open Sans", 18), command=theme_event,  value=3, variable=theme_var)
     system.grid(row=0, column=2, padx=5, pady=5)
-    
 
 def theme_event():
     if theme_var.get() == 1: ctk.set_appearance_mode("light")
