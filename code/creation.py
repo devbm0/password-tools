@@ -24,6 +24,8 @@ char_groups = {
     }
 }
 
+
+password_list = []
 def submit_word():
     global password
     status_label.configure(text='', text_color='red')
@@ -34,33 +36,48 @@ def submit_word():
         status_label.configure(text='Error: Please select at least one character type option.')
     password = generate(length_word, selected_groups)
     pass_label_II.configure(text=f'{password}', font=('Consolas', 36))
-
+    password_list.append(password)
+    print(password_list)
+ 
     def copy():
         pypc.copy(password)
         status_label.configure(text='Password copied!', text_color='green')
     copy_button = ctk.CTkButton(pass_frame, text='Copy', command=copy, font=('Open Sans', 16), width=30)
     copy_button.grid(row=0, column=1, padx=10)
 
-def submit_phrase():
-    global password
-    status_label.configure(text='', text_color='red')
-    if not length_phrase:
-        status_label.configure(text='Error: Please select a length for your password.')
-    password = generate_phrase(length_phrase, options_groups)
-    pass_label_II.configure(text=f'{password}', font=('Consolas', 30), wraplength=800, justify='center')
-    if len(password) >= 30:
-        pass_label_II.configure(font=('Consolas', 24))
-    def copy():
-        pypc.copy(password)
-        status_label.configure(text='Password copied!', text_color='green')
-    copy_button = ctk.CTkButton(pass_frame, text='Copy', command=copy, font=('Open Sans', 16), width=30)
-    copy_button.grid(row=0, column=1, padx=10)
+    def save():
+        save_window = ctk.CTkToplevel(frame, width=450, height=300)
+        lbl = ctk.CTkLabel(save_window, text="Are you sure?", font=('Open Sans', 32, 'bold'))
+        lbl.place(relx=0.5, y=30, anchor='center')
+        textbox = ctk.CTkTextbox(save_window, fg_color='transparent', width=400, height=300, wrap='word', font=("Open Sans", 16))
+        textbox.place(relx=0.5, y=200, anchor='center')
+        warning_text = '''If you continue, all passwords generated in this session will be saved to your computer. Once you press 'save' below, they will be forgotten by this program and you will not be able to recover them. To ensure the passwords are not lost, be sure to securely save them in a password manager or another secure place.'''
+        textbox.insert('0.0', warning_text, 'center')
+        textbox.tag_config('center', justify='center')
+        textbox.configure(state='disabled')
+
+        def defsave():
+            with open("passwords.txt", 'w') as file:
+                for item in password_list:
+                    file.write(item + '\n')
+            password_list.clear()
+            save_window.destroy()    
+            status_label.configure(text='File saved successfully!', text_color='green')
+        button_frame = ctk.CTkFrame(save_window, height=25)
+        button_frame.place(relx=0.5, y=260, anchor='center')
+        defsave_btn = ctk.CTkButton(button_frame, text="Save", command=defsave)
+        defsave_btn.grid(row=0, column=0)
+        cancel_btn = ctk.CTkButton(button_frame, text="Cancel", command=save_window.destroy)
+        cancel_btn.grid(row=0, column=1)
+
+    save_button = ctk.CTkButton(pass_frame, text='Save', command=save, font=("Open Sans", 16), width=30)
+    save_button.grid(row=0, column=2, padx=10)
 
 def creation_main(container):
     for child in container.winfo_children():
         child.destroy()
     
-    global length_selection, characters, pass_label_II, status_label, pass_frame
+    global length_selection, characters, pass_label_II, status_label, pass_frame, frame
     global length_phrase, options_groups
     length_selection = ''
     characters = []
@@ -77,8 +94,8 @@ def creation_main(container):
     main_label = ctk.CTkLabel(frame, text='Creation', font=('Open Sans', 36, 'bold'))
     main_label.place(relx=0.5, y=40, anchor='center')
 
-    word_lbl = ctk.CTkLabel(frame, text='Random Characters', font=('Open Sans', 24, 'bold'))
-    word_lbl.place(relx=0.5, y=90, anchor='center')
+    sub_lbl = ctk.CTkLabel(frame, text='Create a random and secure password!', font=('Open Sans', 24, 'bold', 'italic'))
+    sub_lbl.place(relx=0.5, y=90, anchor='center')
 
     length_frame = ctk.CTkFrame(frame, width=835, height=50)
     length_frame.place(relx=0.5, y=135, anchor='center')
@@ -175,101 +192,6 @@ def creation_main(container):
 
     submit = ctk.CTkButton(frame, text='Submit', command=submit_word, font=('Open Sans', 24))
     submit.place(relx=0.5, y=240, anchor='center')
-
-    line = ctk.CTkFrame(frame, width=800, height=2, fg_color='white')
-    line.place(relx=0.5, y=285, anchor='center')
-
-    phrase_lbl = ctk.CTkLabel(frame, text='Random Words', font=('Open Sans', 24, 'bold'))
-    phrase_lbl.place(relx=0.5, y=320, anchor='center')
-
-    length_frame_II = ctk.CTkFrame(frame, width=835, height=50)
-    length_frame_II.place(relx=0.5, y=360, anchor='center')
-    length_frame_II.pack_propagate(False)
-    length_frame_II.grid_propagate(False)
-    len_lbl_phrase = ctk.CTkLabel(length_frame_II, text='Length:', font=font_small)
-    len_lbl_phrase.grid(row=0, column=0, padx=(10,5), pady=10)
-
-    def length_phrase_event():
-        global length_phrase
-        if radiovar_phrase.get() == 1:
-            length_phrase = 2
-            checkbox4.configure(state=ctk.NORMAL)
-            checkbox5.configure(state=ctk.NORMAL)
-            checkbox6.configure(state=ctk.NORMAL)
-            checkbox7.configure(state=ctk.NORMAL)
-        if radiovar_phrase.get() == 2:
-            length_phrase = 3
-            checkbox4.configure(state=ctk.NORMAL)
-            checkbox5.configure(state=ctk.NORMAL)
-            checkbox6.configure(state=ctk.NORMAL)
-            checkbox7.configure(state=ctk.NORMAL)
-        if radiovar_phrase.get() == 3:
-            length_phrase = 4
-            checkbox4.configure(state=ctk.NORMAL)
-            checkbox5.configure(state=ctk.NORMAL)
-            checkbox6.configure(state=ctk.NORMAL)
-            checkbox7.configure(state=ctk.NORMAL)
-        if radiovar_phrase.get() == 4:
-            length_phrase = 6
-            checkbox4.configure(state=ctk.NORMAL)
-            checkbox5.configure(state=ctk.NORMAL)
-            checkbox6.configure(state=ctk.NORMAL)
-            checkbox7.configure(state=ctk.NORMAL)
-        if radiovar_phrase.get() == 5:
-            length_phrase = 8
-            checkbox4.configure(state=ctk.NORMAL)
-            checkbox5.configure(state=ctk.NORMAL)
-            checkbox6.configure(state=ctk.NORMAL)
-            checkbox7.configure(state=ctk.NORMAL)
-        else: 
-            pass
-
-    radiovar_phrase = ctk.IntVar(value=0)
-    radiobutton_7 = ctk.CTkRadioButton(length_frame_II, text='2 Words', command=length_phrase_event, variable=radiovar_phrase, value=1)
-    radiobutton_7.grid(row=0, column=1, padx=10, pady=10)
-    radiobutton_8 = ctk.CTkRadioButton(length_frame_II, text='3 Words', command=length_phrase_event, variable=radiovar_phrase, value=2)
-    radiobutton_8.grid(row=0, column=2, padx=10, pady=10)
-    radiobutton_9 = ctk.CTkRadioButton(length_frame_II, text='4 Words', command=length_phrase_event, variable=radiovar_phrase, value=3)
-    radiobutton_9.grid(row=0, column=3, padx=10, pady=10)
-    radiobutton_10 = ctk.CTkRadioButton(length_frame_II, text='6 Words', command=length_phrase_event, variable=radiovar_phrase, value=4)
-    radiobutton_10.grid(row=0, column=4, padx=10, pady=10)
-    radiobutton_11 = ctk.CTkRadioButton(length_frame_II, text='8 Words', command=length_phrase_event, variable=radiovar_phrase, value=5)
-    radiobutton_11.grid(row=0, column=5, padx=10, pady=10)
-
-    options_frame = ctk.CTkFrame(frame, width=835, height=50)
-    options_frame.place(relx=0.493, y=410, anchor='center')
-    options_frame.pack_propagate(False)
-    options_frame.grid_propagate(False)
-
-    def options_phrase_event():
-        global options_groups
-        options_groups = []
-        if checkbox4_var.get():
-            options_groups.append('hyphens')
-        if checkbox5_var.get():
-            options_groups.append('numbers')
-        if checkbox6_var.get():
-            options_groups.append('punctuation')
-        if checkbox7_var.get():
-            options_groups.append('capitals')
-
-    checkbox4_var = ctk.IntVar(value=0)
-    checkbox5_var = ctk.IntVar(value=0)
-    checkbox6_var = ctk.IntVar(value=0)
-    checkbox7_var = ctk.IntVar(value=0)
-    options_lbl = ctk.CTkLabel(options_frame, text='Options:', font=font_small)
-    options_lbl.grid(row=0, column=0, padx=(10, 5), pady=10)
-    checkbox4 = ctk.CTkCheckBox(options_frame, text='Include Hyphens', command=options_phrase_event, variable=checkbox4_var, state=ctk.DISABLED)
-    checkbox4.grid(row=0, column=1, padx=10, pady=10)
-    checkbox5 = ctk.CTkCheckBox(options_frame, text='Include Numbers', command=options_phrase_event, variable=checkbox5_var, state=ctk.DISABLED)
-    checkbox5.grid(row=0, column=2, padx=10, pady=10)
-    checkbox6 = ctk.CTkCheckBox(options_frame, text='Include Punctuation', command=options_phrase_event, variable=checkbox6_var, state=ctk.DISABLED)
-    checkbox6.grid(row=0, column=3, padx=10, pady=10)
-    checkbox7 = ctk.CTkCheckBox(options_frame, text='Include Capitals', command=options_phrase_event, variable=checkbox7_var, state=ctk.DISABLED)
-    checkbox7.grid(row=0, column=4, padx=10, pady=10)
-
-    submit_II = ctk.CTkButton(frame, text='Submit', command=submit_phrase, font=('Open Sans', 24))
-    submit_II.place(relx=0.5, y=470, anchor='center')
     
     pass_label = ctk.CTkLabel(frame, text='Your new password:', font=('Open sans', 20))
     pass_label.place(relx=0.5, y = 550, anchor='center')
@@ -306,26 +228,3 @@ def generate(length_word, selected_groups):
 
     rng.shuffle(password_chars)
     return ''.join(password_chars)
-
-def generate_phrase(length_phrase, options_groups):
-    words_path = os.path.abspath('words.txt')
-
-    try:
-        with open (words_path, 'r') as file:
-            words = [line.strip() for line in file if line.strip()]
-    except FileNotFoundError:
-        print("Error: File not found")
-        return None
-
-    pieces = [secrets.choice(words) for _ in range(length_phrase)]
-    if 'capitals' in options_groups:
-        pieces = [value.title() for value in pieces]
-    if 'numbers' in options_groups:
-        pieces = [value + secrets.choice(string.digits) for value in pieces]
-    if 'punctuation' in options_groups:
-        pieces = [value + secrets.choice(string.punctuation) for value in pieces]
-    if 'hyphens' in options_groups:
-        phrase = '-'.join(pieces)
-    if 'hyphens' not in options_groups:
-        phrase = ' '.join(pieces)
-    return phrase
