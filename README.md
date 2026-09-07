@@ -16,7 +16,7 @@ It is now more important than ever to have strong passwords and good habits! Thi
 
 ### Password Creation
 
-This tool uses python's Secrets module to generate completely random yet secure strings of numbers, letters, and characters, all in an easily usable GUI. Alternatively, it can select random whole dictionary words to string together so your password is easier to remember. 
+Use this tool to generate the next PIN for your phone, garage door, safe, or other device, or use it to build the password for a new account! This tool uses python's Secrets module to generate completely random yet secure strings of numbers, letters, and characters, all in an easily usable GUI. Then, you can save the session's generated passwords securely to your computer. 
 
 ### Password Analysis
 
