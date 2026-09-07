@@ -46,6 +46,11 @@ All unsaved data will be destroyed.''', font=('Open Sans', 16))
     confirm.grid(row=0, column=1, padx=15, pady=15)
 
 def settings_main():
+    def theme_event():
+        if theme_var.get() == 1: ctk.set_appearance_mode("light")
+        if theme_var.get() == 2: ctk.set_appearance_mode("dark")
+        if theme_var.get() == 3: ctk.set_appearance_mode("system")
+
     global theme_var
     settings_root = ctk.CTkToplevel(root)
     settings_root.title("Settings - Password Tools")
@@ -69,10 +74,12 @@ def settings_main():
     system = ctk.CTkRadioButton(theme_options_frame, text="System", font=("Open Sans", 18), command=theme_event,  value=3, variable=theme_var)
     system.grid(row=0, column=2, padx=5, pady=5)
 
-def theme_event():
-    if theme_var.get() == 1: ctk.set_appearance_mode("light")
-    if theme_var.get() == 2: ctk.set_appearance_mode("dark")
-    if theme_var.get() == 3: ctk.set_appearance_mode("system")
+    about_lbl = ctk.CTkLabel(settings_root, text="About", font=("Open Sans", 36, 'bold'))
+    about_lbl.place(relx=0.5, y=190, anchor='center')
+    sub_lbl = ctk.CTkLabel(settings_root, text='''Version P1.0.0
+
+    Written by Ben Munch (Github: devbm0)''', font=("Open Sans", 16))
+    sub_lbl.place(relx=0.5, y=240, anchor='center')
 
 root = ctk.CTk()
 root.geometry("900x700")
@@ -106,7 +113,7 @@ creation_btn = ctk.CTkButton(nav, text='Creation', command=lambda: creation.crea
 creation_btn.place(x=71, y=0)
 analysis_btn = ctk.CTkButton(nav, text='Analysis', command=lambda: analysis.analysis_main(container), fg_color='dark blue', bg_color='dark blue', width=70, height=40, font=font_small)
 analysis_btn.place(x=140, y=0)
-learn_btn = ctk.CTkButton(nav, text='Learn', command=test, fg_color='dark blue', bg_color='dark blue', width=70, height=40, font=font_small)
+learn_btn = ctk.CTkButton(nav, text='Learn', command=lambda: learn.learn_main(container), fg_color='dark blue', bg_color='dark blue', width=70, height=40, font=font_small)
 learn_btn.place(x=209, y=0)
 settings_btn = ctk.CTkButton(nav, text='Settings', command=lambda: settings_main(), fg_color='dark blue', bg_color='dark blue', width=70, height=40, font=font_small)
 settings_btn.place(x=278, y=0)
